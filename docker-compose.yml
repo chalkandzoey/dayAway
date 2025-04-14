@@ -1,0 +1,30 @@
+services:
+  dayaway_db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: dayaway_admin
+      POSTGRES_PASSWORD: Themandolorian3
+      POSTGRES_DB: dayaway_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - dayaway_db_data:/var/lib/postgresql/data
+  dayaway_backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - dayaway_db
+    environment:
+      DB_HOST: dayaway_db
+      DB_USER: dayaway_admin
+      DB_PASSWORD: Themandolorian3
+      DB_NAME: dayaway_db
+  dayaway_frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - dayaway_backend
+volumes:
+  dayaway_db_data:
