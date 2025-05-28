@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Environment variables file
+.env
+
+# Log files
+npm-debug.log*
+*.log
+
+# Optional macOS folder
+.DS_Store
